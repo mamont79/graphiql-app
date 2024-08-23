@@ -10,14 +10,14 @@ export const authors: AuthorType[] = [
   },
   {
     id: 2,
-    image: '',
+    image: '/oleksandr.png',
     name: 'Oleksandr Mazghin',
-    position: 'Technikal solution',
+    position: 'Technical solution',
     linkGH: 'https://github.com/ordinaraviro',
   },
   {
     id: 3,
-    image: '',
+    image: '/liza.png',
     name: 'Yelyzaveta Vasylenko',
     position: 'Design + develop',
     linkGH: 'https://github.com/ElizabethVasilenko13',

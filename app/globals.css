@@ -24,4 +24,27 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: #6bc8ed;
+    border-radius: 9999px;
+    border: 3px solid #ffffff;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background-color: #e0e0e0;
+    border-radius: 9999px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #38a9f5;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: #faeb65;
+  }
 }
