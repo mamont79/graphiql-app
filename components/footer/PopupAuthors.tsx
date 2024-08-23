@@ -9,7 +9,9 @@ export const PopupAuthors = () => {
 
   return (
     <div>
-      <div onClick={() => setOpen(!open)}>Authors</div>
+      <div onClick={() => setOpen(!open)} className="cursor-pointer text-xl font-bold">
+        Authors
+      </div>
       {open && (
         <div
           onClick={() => setOpen(false)}

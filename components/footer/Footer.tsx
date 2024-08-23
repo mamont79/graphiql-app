@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="content-center">
         <PopupAuthors />
       </div>
-      <div className="content-center">2024</div>
+      <div className="content-center text-xl font-bold">2024</div>
       <div className="content-center">
         <a
           className="flex place-items-center"
