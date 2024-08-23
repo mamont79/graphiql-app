@@ -4,10 +4,6 @@
   "endOfLine": "auto",
   "tabWidth": 2,
   "singleQuote": true,
-  "bracketSpacing": true,
   "semi": true,
-  "useTabs": false,
-  "bracketSameLine": false,
-  "jsxSingleQuote": false,
   "arrowParens": "always"
 }
