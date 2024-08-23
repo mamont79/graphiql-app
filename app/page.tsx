@@ -8,7 +8,7 @@ export default function WelcomePage() {
 
       <div className="flex-grow">
         <h1 className="text-3xl my-8 bg-[#fbfd70] font-bold underline text-center">
-          Welcome, Next.js!
+          Welcome, my dear!
         </h1>
       </div>
 
