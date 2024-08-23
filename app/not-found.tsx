@@ -1,9 +1,17 @@
+'use client';
+
 import Error404Icon from '@/assets/Error404Icon';
 import { Footer } from '@/components/footer/Footer';
 import { Header } from '@/components/header/Header';
 import Link from 'next/link';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 export default function NotFound() {
+  useEffect(() => {
+    toast.error('404 - Page Not Found');
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
