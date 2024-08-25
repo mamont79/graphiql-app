@@ -3,14 +3,16 @@
 import { authors } from '@/constants/authors';
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 export const PopupAuthors = () => {
   const [open, setOpen] = useState(false);
+  const t = useTranslations('Footer');
 
   return (
     <div>
       <div onClick={() => setOpen(!open)} className="cursor-pointer text-xl font-bold">
-        Authors
+        {t('authors')}
       </div>
       {open && (
         <div

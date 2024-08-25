@@ -1,0 +1,11 @@
+{
+  "HomePage": {
+    "welcome": "Приветствую"
+  },
+  "Header": {
+    "lang": "Язык"
+  },
+  "Footer": {
+    "authors": "Авторы"
+  }
+}
