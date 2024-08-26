@@ -1,24 +1,31 @@
 'use client';
-import { auth } from '@/firebase/firebase.config';
+import { useAuth } from '@/context/AuthContext';
 import { AuthType } from '@/types/authTypes';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useEffect, useState } from 'react';
 
 const RegisterForm = () => {
+  const { authUser, signUp } = useAuth();
+  const router = useRouter();
   const [data, setData] = useState<AuthType>({
     email: '',
     password: '',
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  useEffect(() => {
+    if (authUser) {
+      router.push('/');
+    }
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(data);
-    createUserWithEmailAndPassword(auth, data.email, data.password)
-      .then((user) => {
-        console.log(user);
-        setData({ email: '', password: '' });
-      })
-      .catch((error) => console.log(error));
+    try {
+      await signUp(data.email, data.password);
+      router.push('/');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

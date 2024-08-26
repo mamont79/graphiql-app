@@ -1,28 +1,33 @@
 'use client';
-import { auth } from '@/firebase/firebase.config';
+import { useAuth } from '@/context/AuthContext';
 import { AuthType } from '@/types/authTypes';
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useEffect, useState } from 'react';
 
 const LoginForm = () => {
+  const { authUser, logIn } = useAuth();
+  const router = useRouter();
   const [data, setData] = useState<AuthType>({
     email: '',
     password: '',
   });
   const [error, setError] = useState('');
 
-  const handleSubmit = (e: FormEvent) => {
+  useEffect(() => {
+    if (authUser) {
+      router.push('/');
+    }
+  });
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(data); //console data
-    signInWithEmailAndPassword(auth, data.email, data.password)
-      .then((user) => {
-        console.log(user); //console user
-        setData({ email: '', password: '' });
-      })
-      .catch((error) => {
-        console.log(error);
-        setError("SORRY, COULDN'T FIND YOUR ACCOUNT");
-      });
+    try {
+      await logIn(data.email, data.password);
+      setData({ email: '', password: '' });
+      router.push('/');
+    } catch (error) {
+      setError('Wrong email or password');
+    }
   };
 
   return (

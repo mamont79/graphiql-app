@@ -1,24 +1,13 @@
 'use client';
 import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
-import { useEffect, useState } from 'react';
-import { onAuthStateChanged, signOut, User } from 'firebase/auth';
+import { getIdTokenResult, signOut } from 'firebase/auth';
 import { auth } from '@/firebase/firebase.config';
+import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 
 export default function WelcomePage() {
-  const [authUser, setAuthUset] = useState<User | null>(null);
-  useEffect(() => {
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthUset(user);
-      } else {
-        setAuthUset(null);
-      }
-    });
-    return () => {
-      listen();
-    };
-  }, []);
+  const { authUser } = useAuth();
   function userSignOut() {
     signOut(auth)
       .then(() => console.log('success'))
@@ -33,12 +22,19 @@ export default function WelcomePage() {
           Welcome, Next.js!
         </h1>
         <button
-          onClick={() => {
+          onClick={async () => {
             console.log(authUser);
+            const tokenResult = await getIdTokenResult(authUser);
+            console.log(tokenResult);
+            const tokenExpirationTime = new Date(tokenResult.expirationTime);
+            const timeLeft = tokenExpirationTime.getTime() - Date.now();
+            console.log(`Token expires in ${timeLeft / 1000} seconds`);
           }}
         >
           Log user
         </button>
+        <Link href={'/register'}>SignUp</Link>
+        <Link href={'/login'}>SingIn</Link>
         {authUser && <button onClick={userSignOut}>Sign Out</button>}
       </div>
 
