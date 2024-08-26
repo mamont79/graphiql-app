@@ -1,5 +1,7 @@
 'use client';
+import { auth } from '@/firebase/firebase.config';
 import { AuthType } from '@/types/authTypes';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FormEvent, useState } from 'react';
 
 const LoginForm = () => {
@@ -7,10 +9,20 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log(data);
+    console.log(data); //console data
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((user) => {
+        console.log(user); //console user
+        setData({ email: '', password: '' });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError("SORRY, COULDN'T FIND YOUR ACCOUNT");
+      });
   };
 
   return (
@@ -79,6 +91,7 @@ const LoginForm = () => {
           >
             Login to your account
           </button>
+          {error ? <p className="text-red-400">{error}</p> : ''}
         </form>
       </div>
     </div>

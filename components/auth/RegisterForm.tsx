@@ -1,5 +1,7 @@
 'use client';
+import { auth } from '@/firebase/firebase.config';
 import { AuthType } from '@/types/authTypes';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { FormEvent, useState } from 'react';
 
 const RegisterForm = () => {
@@ -11,6 +13,12 @@ const RegisterForm = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log(data);
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((user) => {
+        console.log(user);
+        setData({ email: '', password: '' });
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -82,7 +90,7 @@ const RegisterForm = () => {
             <input
               type="password"
               name="password"
-              id="password"
+              id="repeatpassword"
               placeholder="••••••••"
               className="valid:[&:not(:placeholder-shown)]:border-primary [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-300 focus:border-blue-500 focus:outline-none focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white dark:placeholder-gray-400"
               pattern={data.password ? `^${data.password}$` : '.*'}
