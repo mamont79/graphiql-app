@@ -22,9 +22,7 @@ export default function NotFound() {
         <Link href="/">
           <Error404Icon />
         </Link>
-        <p className="my-4 text-2xl font-bold text-sky-700">
-          Click `404` to go to main page
-        </p>
+        <p className="my-4 text-2xl font-bold text-sky-700">Click `404` to go home</p>
       </div>
       <Footer />
     </div>
