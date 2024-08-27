@@ -14,7 +14,8 @@ const config: Config = {
         text: '#1F2937',
         primary: '#3B82F6',
         secondary: '#10B981',
-        accent: '#FBBF24',
+        accent: '#248CF3',
+        accentSecondary: '#C2A5FC',
         muted: '#9CA3AF',
       },
       backgroundImage: {
