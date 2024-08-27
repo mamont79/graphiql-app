@@ -24,7 +24,7 @@ export const LanguageSwitcher = () => {
     <select
       value={locale}
       onChange={(e) => changeLanguage(e.target.value)}
-      className="bg-white text-black rounded h-[30px] w-[50px]"
+      className="rounded-xl border border-accentSecondary text-black h-[30px] w-[60px] focus:border-accentSecondary focus:outline-none"
     >
       <option value="en">EN</option>
       <option value="ru">RU</option>

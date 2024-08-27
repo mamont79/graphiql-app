@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import { PluginAPI } from 'tailwindcss/types/config';
 
 const config: Config = {
   darkMode: 'selector',
@@ -25,6 +26,31 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents, theme }: PluginAPI) {
+      addComponents({
+        '.btn': {
+          padding: '12px 24px',
+          minWidth: '120px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: theme('borderRadius.xl'),
+          backgroundColor: theme('colors.accent'),
+          transition: 'background-color 0.2s ease',
+          color: theme('colors.black'),
+          '&:hover': {
+            backgroundColor: '#2081e1',
+          },
+        },
+        '.btn-accent-secondary': {
+          backgroundColor: theme('colors.accentSecondary'),
+          '&:hover': {
+            backgroundColor: '#af94e4',
+          },
+        },
+      });
+    },
+  ],
 };
 export default config;
