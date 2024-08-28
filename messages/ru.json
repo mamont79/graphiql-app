@@ -3,7 +3,10 @@
     "welcome": "Приветствую"
   },
   "Header": {
-    "lang": "Язык"
+    "lang": "Язык",
+    "signIn": "Вход",
+    "signUp": "Регистрация",
+    "logout": "Выйти"
   },
   "Footer": {
     "authors": "Авторы"

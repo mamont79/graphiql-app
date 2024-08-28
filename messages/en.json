@@ -3,7 +3,10 @@
     "welcome": "Welcome"
   },
   "Header": {
-    "lang": "Language"
+    "lang": "Language",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "logout": "Logout"
   },
   "Footer": {
     "authors": "Authors"
