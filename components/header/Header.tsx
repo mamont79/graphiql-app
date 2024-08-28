@@ -34,9 +34,9 @@ export const Header = () => {
         isSticky
           ? 'shadow-md shadow-accentSecondary sticky top-0 left-0 z-50 h-[70px]'
           : 'border-b-2'
-      } bg-white text-text transition-border duration-300  w-full h-[80px] flex justify-center items-center`}
+      } bg-white text-text transition-border duration-300 h-[80px] flex justify-center items-center`}
     >
-      <div className="container lg flex justify-between items-center">
+      <div className="wrapper flex justify-between items-center w-full">
         <div className="content-center">
           <Link href={AppRoutes.MAIN_PAGE} className="flex gap-2 items-center">
             <Image src="/app-logo.svg" alt="App Logo" width={40} height={40} />

@@ -1,6 +1,8 @@
 {
   "HomePage": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "playground": "Playground",
+    "history": "History"
   },
   "Header": {
     "lang": "Language",
