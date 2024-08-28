@@ -49,16 +49,12 @@ export const Header = () => {
       </div>
       <div className="flex gap-2">
         <Link href={AppRoutes.LOGIN_PAGE} className="btn btn-accent-secondary">
-          Sign in
+          {t('signIn')}
         </Link>
         <Link href={AppRoutes.REGISTER_PAGE} className="btn">
-          Sign up
+          {t('signUp')}
         </Link>
-        {isLoggedIn && (
-          <button className="btn" onClick={logOut}>
-            Logout
-          </button>
-        )}
+        {isLoggedIn && <button className="btn">{t('logout')}</button>}
       </div>
     </header>
   );

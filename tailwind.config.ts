@@ -30,8 +30,8 @@ const config: Config = {
     function ({ addComponents, theme }: PluginAPI) {
       addComponents({
         '.btn': {
-          padding: '12px 24px',
-          minWidth: '120px',
+          padding: '12px 10px',
+          width: '120px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
