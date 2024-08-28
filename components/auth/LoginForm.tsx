@@ -29,7 +29,7 @@ const LoginForm = () => {
       setData({ email: '', password: '' });
       router.push(AppRoutes.MAIN_PAGE);
     } catch (error) {
-      setError('Wrong email or password');
+      setError(t('responseError'));
     }
   };
 
@@ -96,7 +96,7 @@ const LoginForm = () => {
           >
             {t('loginbtn')}
           </button>
-          {error ? <p className="text-red-400">{error}</p> : ''}
+          {error ? <p className="text-center text-red-400">{error}</p> : ''}
         </form>
       </div>
     </div>

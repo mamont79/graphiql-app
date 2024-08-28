@@ -24,6 +24,7 @@
     "pswdError": "Password must be at least 8 characters, one letter, one digit, one special character.",
     "pswdRepeatError": "Passwords do not match.",
     "loginbtn": "Login to your account",
-    "logupbtn": "Register your account"
+    "logupbtn": "Register your account",
+    "responseError": "Wrong email or password"
   }
 }

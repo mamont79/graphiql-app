@@ -14,6 +14,7 @@ const RegisterForm = () => {
     email: '',
     password: '',
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (authUser) {
@@ -27,7 +28,7 @@ const RegisterForm = () => {
       await signUp(data.email, data.password);
       router.push(AppRoutes.MAIN_PAGE);
     } catch (error) {
-      console.log(error);
+      setError(t('responseError'));
     }
   };
 
@@ -114,6 +115,7 @@ const RegisterForm = () => {
           >
             {t('logupbtn')}
           </button>
+          {error ? <p className="text-red-400">{error}</p> : ''}
         </form>
       </div>
     </div>
