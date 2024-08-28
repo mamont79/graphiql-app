@@ -9,21 +9,29 @@
     "lint": "next lint",
     "prettier": "prettier --check .",
     "prettier-fix": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "next": "14.2.5",
     "next-intl": "^3.17.6",
+    "next-router-mock": "^0.9.13",
     "react": "^18",
     "react-dom": "^18",
     "react-toastify": "^10.0.5"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "@vitest/coverage-v8": "^2.0.5",
     "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
@@ -33,9 +41,11 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^8.0.0",
+    "jsdom": "^25.0.0",
     "postcss": "^8.4.41",
     "prettier": "^3.3.2",
     "tailwindcss": "^3.4.10",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.0.5"
   }
 }

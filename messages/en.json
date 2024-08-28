@@ -2,6 +2,10 @@
   "HomePage": {
     "welcome": "Welcome"
   },
+  "NotFoundPage": {
+    "sorry": "Sorry, the page not found",
+    "click": "Click `404` to go home"
+  },
   "Header": {
     "lang": "Language",
     "signIn": "Sign in",
