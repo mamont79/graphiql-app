@@ -1,12 +1,15 @@
 {
   "HomePage": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
   },
   "Header": {
     "lang": "Language",
     "signIn": "Sign in",
     "signUp": "Sign up",
-    "logout": "Logout"
+    "logout": "Logout",
+    "main page": "Main page"
   },
   "Footer": {
     "authors": "Authors"

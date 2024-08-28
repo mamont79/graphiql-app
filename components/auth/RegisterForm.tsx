@@ -1,10 +1,13 @@
 'use client';
+import { AppRoutes } from '@/constants/routes.enum';
 import { useAuth } from '@/context/AuthContext';
 import { AuthType } from '@/types/authTypes';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 
 const RegisterForm = () => {
+  const t = useTranslations('Header');
   const { authUser, signUp } = useAuth();
   const router = useRouter();
   const [data, setData] = useState<AuthType>({
@@ -22,7 +25,7 @@ const RegisterForm = () => {
     e.preventDefault();
     try {
       await signUp(data.email, data.password);
-      router.push('/');
+      router.push(AppRoutes.MAIN_PAGE);
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +35,9 @@ const RegisterForm = () => {
     <div className="flex-grow flex items-center justify-center">
       <div className="w-full max-w-sm rounded-lg border border-gray-200 bg-background p-4 py-8 shadow-md">
         <form action="" onSubmit={handleSubmit} className="group">
-          <h5 className="mb-2 text-center text-2xl font-medium text-text-900">Sign Up</h5>
+          <h5 className="mb-2 text-center text-2xl font-medium text-text-900">
+            {t('signUp')}
+          </h5>
           <div className="mb-5">
             <label
               htmlFor="email"

@@ -1,12 +1,15 @@
 {
   "HomePage": {
-    "welcome": "Приветствую"
+    "welcome": "Приветствую",
+    "signIn": "Вход",
+    "signUp": "Регистрация"
   },
   "Header": {
     "lang": "Язык",
     "signIn": "Вход",
     "signUp": "Регистрация",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "main page": "На главную"
   },
   "Footer": {
     "authors": "Авторы"

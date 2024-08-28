@@ -22,13 +22,13 @@ export default function WelcomePage() {
               href={'/register'}
               className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded"
             >
-              SignUp
+              {t('signUp')}
             </Link>
             <Link
               href={'/login'}
               className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded ml-4"
             >
-              SignIn
+              {t('signIn')}
             </Link>
           </div>
         </div>
