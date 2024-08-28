@@ -6,11 +6,13 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AppRoutes } from '@/constants/routes.enum';
+import { useAuth } from '@/context/AuthContext';
 
 export const Header = () => {
   const t = useTranslations('Header');
   const [isSticky, setIsSticky] = useState(false);
-  const isLoggedIn = false;
+  const isLoggedIn = true;
+  const { logOut } = useAuth();
 
   const handleScroll = () => {
     const minScrollHeigth = 0;
@@ -52,7 +54,11 @@ export const Header = () => {
         <Link href={AppRoutes.REGISTER_PAGE} className="btn">
           Sign up
         </Link>
-        {isLoggedIn && <button className="btn">Logout</button>}
+        {isLoggedIn && (
+          <button className="btn" onClick={logOut}>
+            Logout
+          </button>
+        )}
       </div>
     </header>
   );

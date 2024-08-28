@@ -14,7 +14,7 @@ export default function WelcomePage() {
       <Header />
       {!authUser && (
         <div className="flex-grow">
-          <h1 className="text-3xl my-8 bg-[#fbfd70] font-bold underline text-center">
+          <h1 className="text-3xl my-8 font-bold underline text-center">
             {t('welcome')}, my dear!
           </h1>
           <div className="flex justify-center items-center">
@@ -35,7 +35,7 @@ export default function WelcomePage() {
       )}
       {authUser && (
         <div className="flex-grow">
-          <h1 className="text-3xl my-8 bg-[#fbfd70] font-bold underline text-center">
+          <h1 className="text-3xl my-8 font-bold underline text-center">
             {t('welcome')}, {`${authUser.email?.split('@')[0]}!`}
           </h1>
           <div className="flex justify-center items-center">

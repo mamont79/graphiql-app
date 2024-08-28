@@ -49,7 +49,7 @@ const LoginForm = () => {
               className="valid:[&:not(:placeholder-shown)]:border-primary [&:not(:placeholder-shown):not(:focus):invalid~span]:block invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-400 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 placeholder-gray-300 focus:border-blue-500 focus:ring-blue-500"
               autoComplete="off"
               required
-              pattern="[a-z0-9._+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,4}"
               placeholder="name@company.com"
               onChange={(e) => {
                 setData({
