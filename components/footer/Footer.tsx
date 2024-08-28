@@ -3,8 +3,8 @@ import { PopupAuthors } from './PopupAuthors';
 
 export const Footer = () => {
   return (
-    <footer className="flex flex-row justify-around bg-[#1da1f2] w-full h-[80px]">
-      <div className="content-center">
+    <footer className="flex flex-row justify-around w-full h-[80px] text-text">
+      <div className="content-center hover:underline" title="Click to see tean members">
         <PopupAuthors />
       </div>
       <div className="content-center text-xl font-bold">2024</div>
