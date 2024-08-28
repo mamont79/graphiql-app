@@ -13,5 +13,17 @@
   },
   "Footer": {
     "authors": "Authors"
+  },
+  "Form": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "email": "Your email",
+    "emailError": "Please enter a valid email address.",
+    "pswd": "Your password",
+    "pswdRepeat": "Repeat password",
+    "pswdError": "Password must be at least 8 characters, one letter, one digit, one special character.",
+    "pswdRepeatError": "Passwords do not match.",
+    "loginbtn": "Login to your account",
+    "logupbtn": "Register your account"
   }
 }

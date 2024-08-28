@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useState } from 'react';
 
 const LoginForm = () => {
-  const t = useTranslations('Header');
+  const t = useTranslations('Form');
   const { authUser, logIn } = useAuth();
   const router = useRouter();
   const [data, setData] = useState<AuthType>({
@@ -45,7 +45,7 @@ const LoginForm = () => {
               htmlFor="email"
               className="mb-2 block text-sm font-medium text-text-900"
             >
-              Your email
+              {t('email')}
             </label>
             <input
               type="email"
@@ -63,16 +63,14 @@ const LoginForm = () => {
                 });
               }}
             />
-            <span className="mt-1 hidden text-sm text-red-400">
-              Please enter a valid email address.{' '}
-            </span>
+            <span className="mt-1 hidden text-sm text-red-400">{t('emailError')} </span>
           </div>
           <div className="mb-5">
             <label
               htmlFor="password"
               className="mb-2 block text-sm font-medium text-text-900"
             >
-              Your password
+              {t('pswd')}
             </label>
             <input
               type="password"
@@ -89,17 +87,14 @@ const LoginForm = () => {
                 });
               }}
             />
-            <span className="mt-1 hidden text-sm text-red-400">
-              Password must be at least 8 characters, one letter, one digit, one special
-              character.{' '}
-            </span>
+            <span className="mt-1 hidden text-sm text-red-400">{t('pswdError')} </span>
           </div>
 
           <button
             type="submit"
             className="mb-8 mt-2 w-full rounded-lg bg-primary px-5 py-3 text-center text-sm font-medium text-white hover:bg-accent focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:cursor-not-allowed disabled:bg-gradient-to-br disabled:from-gray-100 disabled:to-gray-300 disabled:text-gray-400 group-invalid:pointer-events-none group-invalid:bg-gradient-to-br group-invalid:from-gray-100 group-invalid:to-gray-300 group-invalid:text-gray-400 group-invalid:opacity-70"
           >
-            Login to your account
+            {t('loginbtn')}
           </button>
           {error ? <p className="text-red-400">{error}</p> : ''}
         </form>
