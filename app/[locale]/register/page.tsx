@@ -2,8 +2,8 @@ import RegisterForm from '@/components/auth/RegisterForm';
 
 export default function SignUpPage() {
   return (
-    <div>
+    <main className="flex-1 flex items-center justify-center">
       <RegisterForm />
-    </div>
+    </main>
   );
 }

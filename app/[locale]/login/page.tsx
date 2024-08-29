@@ -2,8 +2,8 @@ import LoginForm from '@/components/auth/LoginForm';
 
 export default function SignInPage() {
   return (
-    <div>
+    <main className="flex-1 flex items-center justify-center">
       <LoginForm />
-    </div>
+    </main>
   );
 }

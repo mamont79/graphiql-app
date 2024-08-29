@@ -10,7 +10,7 @@ export default function WelcomePage() {
   const { authUser } = useAuth();
 
   return (
-    <>
+    <main className="flex-1">
       <section className="wrapper m-auto mt-8 text-text flex justify-center gap-10">
         {authUser ? (
           <>
@@ -37,13 +37,13 @@ export default function WelcomePage() {
       </section>
       <section className="wrapper m-auto mt-8 text-text">
         <div className="bg-primary/40 w-full rounded-xl p-5">
-          <h2 className="text-xl font-bold underline text-center">
+          <h2 className="text-xl font-bold underline mb-3">
             {t('welcome')},{' '}
             {authUser && authUser.email ? authUser.email.split('@')[0] : 'my dear'}
           </h2>
           <h1 className="text-2xl font-bold">GraphQL/REST Api’s {t('playground')}</h1>
         </div>
       </section>
-    </>
+    </main>
   );
 }
