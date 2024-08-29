@@ -9,6 +9,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Header } from '@/components/header/Header';
 import { Footer } from '@/components/footer/Footer';
+import { AuthContextProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,12 +36,14 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <ErrorBoundary>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <ToastContainer />
-            </div>
+            <AuthContextProvider>
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <ToastContainer />
+              </div>
+            </AuthContextProvider>
           </ErrorBoundary>
         </NextIntlClientProvider>
       </body>
