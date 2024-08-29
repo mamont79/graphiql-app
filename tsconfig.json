@@ -26,7 +26,9 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/header"
+    "components/header",
+    "vitest.setup.mts",
+    "vitest.config.mts"
   ],
   "exclude": ["node_modules"]
 }
