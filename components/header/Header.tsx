@@ -6,11 +6,12 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { AppRoutes } from '@/constants/routes.enum';
+import { useAuth } from '@/context/AuthContext';
 
 export const Header = () => {
   const t = useTranslations('Header');
   const [isSticky, setIsSticky] = useState(false);
-  const isLoggedIn = false;
+  const { authUser, logOut } = useAuth();
 
   const handleScroll = () => {
     const minScrollHeigth = 0;
@@ -45,15 +46,27 @@ export const Header = () => {
       <div className="content-center">
         {t('lang')}: <LanguageSwitcher />
       </div>
-      <div className="flex gap-2">
-        <Link href={AppRoutes.LOGIN_PAGE} className="btn btn-accent-secondary">
-          {t('signIn')}
-        </Link>
-        <Link href={AppRoutes.REGISTER_PAGE} className="btn">
-          {t('signUp')}
-        </Link>
-        {isLoggedIn && <button className="btn">{t('logout')}</button>}
-      </div>
+      {!authUser && (
+        <div className="flex gap-2">
+          <Link href={AppRoutes.LOGIN_PAGE} className="btn btn-accent-secondary">
+            {t('signIn')}
+          </Link>
+          <Link href={AppRoutes.REGISTER_PAGE} className="btn">
+            {t('signUp')}
+          </Link>
+        </div>
+      )}
+
+      {authUser && (
+        <div className="flex gap-2">
+          <Link href={AppRoutes.MAIN_PAGE} className="btn">
+            {t('main page')}
+          </Link>
+          <button className="btn" onClick={logOut}>
+            {t('logout')}
+          </button>
+        </div>
+      )}
     </header>
   );
 };

@@ -7,6 +7,7 @@ import 'react-toastify/ReactToastify.css';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { AuthContextProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,8 +34,10 @@ export default async function RootLayout({
       <body className={inter.className}>
         <NextIntlClientProvider messages={messages}>
           <ErrorBoundary>
-            {children}
-            <ToastContainer />
+            <AuthContextProvider>
+              {children}
+              <ToastContainer />
+            </AuthContextProvider>
           </ErrorBoundary>
         </NextIntlClientProvider>
       </body>
