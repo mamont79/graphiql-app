@@ -2,7 +2,7 @@
   "HomePage": {
     "welcome": "Приветствую",
     "playground": "Песочница",
-    "history": "История"
+    "history": "История",
     "signIn": "Вход",
     "signUp": "Регистрация"
   },

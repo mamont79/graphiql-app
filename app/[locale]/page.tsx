@@ -26,16 +26,10 @@ export default function WelcomePage() {
           </>
         ) : (
           <>
-            <Link
-              href={'/register'}
-              className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded"
-            >
+            <Link href={'/register'} className="btn btn-accent-secondary">
               {t('signUp')}
             </Link>
-            <Link
-              href={'/login'}
-              className="bg-primary hover:bg-accent text-white font-bold py-2 px-4 rounded ml-4"
-            >
+            <Link href={'/login'} className="btn btn-accent-secondary">
               {t('signIn')}
             </Link>
           </>
@@ -43,9 +37,10 @@ export default function WelcomePage() {
       </section>
       <section className="wrapper m-auto mt-8 text-text">
         <div className="bg-primary/40 w-full rounded-xl p-5">
-          <h1 className="text-xl font-bold underline text-center">
-            {t('welcome')}, {authUser ? `${authUser.email?.split('@')[0]!}` : 'my dear'}
-          </h1>
+          <h2 className="text-xl font-bold underline text-center">
+            {t('welcome')},{' '}
+            {authUser && authUser.email ? authUser.email.split('@')[0] : 'my dear'}
+          </h2>
           <h1 className="text-2xl font-bold">GraphQL/REST Api’s {t('playground')}</h1>
         </div>
       </section>
