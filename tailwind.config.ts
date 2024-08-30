@@ -29,6 +29,9 @@ const config: Config = {
   plugins: [
     function ({ addComponents, theme }: PluginAPI) {
       addComponents({
+        '.wrapper': {
+          maxWidth: '1280px',
+        },
         '.btn': {
           padding: '12px 10px',
           width: '120px',

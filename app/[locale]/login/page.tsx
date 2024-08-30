@@ -1,13 +1,9 @@
-import { Header } from '@/components/header/Header';
-import { Footer } from '@/components/footer/Footer';
 import LoginForm from '@/components/auth/LoginForm';
 
-export default function WelcomePage() {
+export default function SignInPage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
+    <main className="flex-1 flex items-center justify-center">
       <LoginForm />
-      <Footer />
-    </div>
+    </main>
   );
 }

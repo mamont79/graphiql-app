@@ -7,6 +7,8 @@ import 'react-toastify/ReactToastify.css';
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
+import { Header } from '@/components/header/Header';
+import { Footer } from '@/components/footer/Footer';
 import { AuthContextProvider } from '@/context/AuthContext';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -35,8 +37,12 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ErrorBoundary>
             <AuthContextProvider>
-              {children}
-              <ToastContainer />
+              <div className="flex flex-col min-h-screen">
+                <Header />
+                {children}
+                <Footer />
+                <ToastContainer />
+              </div>
             </AuthContextProvider>
           </ErrorBoundary>
         </NextIntlClientProvider>

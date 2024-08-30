@@ -1,6 +1,8 @@
 {
   "HomePage": {
     "welcome": "Welcome",
+    "playground": "Playground",
+    "history": "History",
     "signIn": "Sign in",
     "signUp": "Sign up"
   },
