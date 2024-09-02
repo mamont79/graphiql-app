@@ -20,6 +20,7 @@ export default defineConfig({
         '**/next-env.d.ts',
         '**/vitest.config.mts',
         '**/.next/**',
+        '**/*.test.{ts,tsx}',
       ],
     },
   },
