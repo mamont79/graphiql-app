@@ -25,7 +25,7 @@ vi.mock('next-intl', () => ({
 
 vi.mock('next/link', () => ({
   __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  default: ({ children }: { children: React.ReactNode }) => <a href="/">{children}</a>,
 }));
 
 vi.mock('firebase/app', () => ({
