@@ -19,6 +19,7 @@ export const PopupAuthors = () => {
           onClick={() => setOpen(false)}
           className="fixed inset-0 flex justify-center items-center bg-slate-600 bg-opacity-50"
         >
+          test
           <div className="scrollbar flex flex-wrap justify-around p-4 bg-white border-2 rounded-xl min-w-[200px] max-w-[700px] w-[60%] max-h-[80%] overflow-auto">
             {authors.map(({ id, image, name, position, linkGH }) => (
               <div
