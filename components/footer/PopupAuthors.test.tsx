@@ -48,13 +48,15 @@ describe('PopupAuthors', () => {
   });
 
   it('closes the popup when clicking outside the popup content', () => {
-    const { container } = render(<PopupAuthors />);
+    render(<PopupAuthors />);
 
     const authorsButton = screen.getByText('authors');
     fireEvent.click(authorsButton);
 
-    const overlay = container.firstChild!.firstChild!;
-    fireEvent.click(overlay);
+    expect(screen.queryByText('Author One')).toBeInTheDocument();
+
+    const overlay = authorsButton.nextSibling;
+    fireEvent.click(overlay!);
 
     expect(screen.queryByText('Author One')).not.toBeInTheDocument();
     expect(screen.queryByText('Author Two')).not.toBeInTheDocument();

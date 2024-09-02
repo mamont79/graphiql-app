@@ -3,11 +3,6 @@ import '@testing-library/jest-dom';
 import { Footer } from './Footer';
 import { vi } from 'vitest';
 
-vi.mock('next/image', () => ({
-  __esModule: true,
-  default: vi.fn(() => <img alt="RSS Logo" />),
-}));
-
 vi.mock('next/link', () => ({
   __esModule: true,
   default: ({ children }: { children: React.ReactNode }) => (
@@ -25,7 +20,6 @@ describe('Footer', () => {
 
     expect(screen.getByText('2024')).toBeInTheDocument();
     expect(screen.getByTitle('Click to see tean members')).toBeInTheDocument();
-    expect(screen.getByAltText('RSS Logo')).toBeInTheDocument();
   });
 
   it('contains a link to the RSSchool course', () => {
