@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextType {
-  authUser: User | null;
+  authUser: User | null | undefined;
   signUp: (email: string, password: string) => Promise<UserCredential>;
   logIn: (email: string, password: string) => Promise<UserCredential>;
   logOut: () => Promise<void>;
@@ -30,7 +30,7 @@ export const useAuth = () => {
 };
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [authUser, setAuthUser] = useState<User | null>(null);
+  const [authUser, setAuthUser] = useState<User | null | undefined>(undefined);
   const router = useRouter();
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       const tokenExpirationTime = new Date(tokenResult.expirationTime);
       const timeLeft = tokenExpirationTime.getTime() - Date.now();
 
-      if (timeLeft < 3300000) {
+      if (timeLeft < 300000) {
         logOut();
         router.push('/');
       }
