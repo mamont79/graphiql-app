@@ -14,7 +14,7 @@ export default function RestapiLayout({ children }: { children: React.ReactNode 
     }
   }, [authUser, router]);
   return authUser ? (
-    <section>{children}</section>
+    <section className="flex-1 justify-center items-center">{children}</section>
   ) : (
     <section className="flex-1 flex justify-center items-center">
       <Loader />
