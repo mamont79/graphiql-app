@@ -80,9 +80,9 @@ export default function RestApi() {
   };
   return (
     <main className="flex-1">
-      <h1 className="text-3xl my-8 font-bold text-center">REST Client</h1>
+      <h1 className="text-3xl mt-8 font-bold text-center">REST Client</h1>
       <div className="flex flex-col items-center justify-center my-4">
-        <div className="flex items-center justify-center my-4 space-y-4">
+        <div className="wrapper flex items-center w-full justify-center gap-4 mt-4">
           <div className="flex items-center justify-center">
             <label htmlFor="method" className="mr-2 text-lg">
               Method:
@@ -100,7 +100,7 @@ export default function RestApi() {
               <option value="DELETE">DELETE</option>
             </select>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex items-center flex-grow justify-center">
             <label htmlFor="endpoint" className="mr-2 text-lg">
               Endpoint:
             </label>
@@ -108,7 +108,7 @@ export default function RestApi() {
               id="endpoint"
               type="text"
               placeholder="https://api.example.com"
-              className="p-2 border border-gray-300 rounded w-80"
+              className="w-full p-2 border border-gray-300 rounded w-80"
               value={endpoint}
               onChange={handleEndpointChange}
             />
@@ -119,132 +119,129 @@ export default function RestApi() {
                 console.log(`Sending ${method} request to ${endpoint}`);
                 handleSendRequest();
               }}
-              className="p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="p-2 px-6 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               Send
             </button>
           </div>
         </div>
-        <div className="flex justify-center space-x-4 my-4">
-          <button
-            onClick={() => setActiveTab('body')}
-            className={`p-2 ${activeTab === 'body' ? 'bg-blue-500 text-white' : 'bg-gray-200'} rounded`}
-          >
-            Body
-          </button>
-          <button
-            onClick={() => setActiveTab('headers')}
-            className={`p-2 ${activeTab === 'headers' ? 'bg-blue-500 text-white' : 'bg-gray-200'} rounded`}
-          >
-            Headers
-          </button>
-          <button
-            onClick={() => setActiveTab('variables')}
-            className={`p-2 ${activeTab === 'variables' ? 'bg-blue-500 text-white' : 'bg-gray-200'} rounded`}
-          >
-            Variables
-          </button>
+        <div className="wrapper w-full border mt-4 border-gray-300 rounded">
+          {' '}
+          <div className="border border-gray-300 border-t-0 border-x-0">
+            <button
+              onClick={() => setActiveTab('body')}
+              className={`p-2 px-6 ${activeTab === 'body' ? 'bg-blue-500 text-white' : ''} `}
+            >
+              Body
+            </button>
+            <button
+              onClick={() => setActiveTab('headers')}
+              className={`p-2 px-6 ${activeTab === 'headers' ? 'bg-blue-500 text-white' : ''} `}
+            >
+              Headers
+            </button>
+            <button
+              onClick={() => setActiveTab('variables')}
+              className={`p-2 px-6 ${activeTab === 'variables' ? 'bg-blue-500 text-white' : ''} `}
+            >
+              Variables
+            </button>
+          </div>
+          {activeTab === 'body' && (
+            <div className="flex flex-col items-center justify-center">
+              <textarea
+                placeholder="Enter JSON or text here"
+                className="w-full wrapper p-2 rounded w-4/5 h-40"
+                value={requestBody}
+                onChange={handleRequestBodyChange}
+              />
+            </div>
+          )}
+          {activeTab === 'headers' && (
+            <div className="wrapper w-full flex flex-col items-center justify-center my-4 px-4 w-full">
+              {headers.map((header, index) => (
+                <div
+                  key={index}
+                  className="w-full flex items-center justify-between space-x-2 mb-2 w-4/5"
+                >
+                  <input
+                    type="text"
+                    placeholder="Header Key"
+                    className="p-2 border border-gray-300 rounded w-full"
+                    value={header.key}
+                    onChange={(e) => handleHeaderChange(index, 'key', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Header Value"
+                    className="p-2 border border-gray-300 rounded w-full"
+                    value={header.value}
+                    onChange={(e) => handleHeaderChange(index, 'value', e.target.value)}
+                  />
+                  <button
+                    onClick={() => removeHeader(index)}
+                    className="p-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={addHeader}
+                className="self-start p-2 bg-green-500 text-white rounded hover:bg-green-600"
+              >
+                Add Header
+              </button>
+            </div>
+          )}
+          {activeTab === 'variables' && (
+            <div className="wrapper w-full flex flex-col items-center justify-center px-4 my-4 w-full">
+              {variables.map((variable, index) => (
+                <div
+                  key={index}
+                  className="w-full flex items-center justify-between space-x-2 mb-2 w-4/5"
+                >
+                  <input
+                    type="text"
+                    placeholder="Variable Key"
+                    className="p-2 border border-gray-300 rounded w-full"
+                    value={variable.key}
+                    onChange={(e) => handleVariableChange(index, 'key', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Variable Value"
+                    className="p-2 border border-gray-300 rounded w-full"
+                    value={variable.value}
+                    onChange={(e) => handleVariableChange(index, 'value', e.target.value)}
+                  />
+                  <button
+                    onClick={() => removeVariable(index)}
+                    className="p-2 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    Remove
+                  </button>
+                </div>
+              ))}
+              <button
+                onClick={addVariable}
+                className="self-start p-2 bg-green-500 text-white rounded hover:bg-green-600"
+              >
+                Add Variable
+              </button>
+            </div>
+          )}
         </div>
-        {activeTab === 'body' && (
-          <div className="flex flex-col items-center justify-center my-4 w-full">
-            <label htmlFor="requestBody" className="mb-2 text-lg">
-              Request Body:
-            </label>
-            <textarea
-              id="requestBody"
-              placeholder="Enter JSON or text here"
-              className="p-2 border border-gray-300 rounded w-4/5 h-40"
-              value={requestBody}
-              onChange={handleRequestBodyChange}
-            />
-          </div>
-        )}
-        {activeTab === 'headers' && (
-          <div className="flex flex-col items-center justify-center my-4 w-full">
-            <label className="mb-2 text-lg">Headers:</label>
-            {headers.map((header, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center space-x-2 mb-2 w-4/5"
-              >
-                <input
-                  type="text"
-                  placeholder="Header Key"
-                  className="p-2 border border-gray-300 rounded w-2/5"
-                  value={header.key}
-                  onChange={(e) => handleHeaderChange(index, 'key', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Header Value"
-                  className="p-2 border border-gray-300 rounded w-2/5"
-                  value={header.value}
-                  onChange={(e) => handleHeaderChange(index, 'value', e.target.value)}
-                />
-                <button
-                  onClick={() => removeHeader(index)}
-                  className="p-2 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={addHeader}
-              className="p-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Add Header
-            </button>
-          </div>
-        )}
-        {activeTab === 'variables' && (
-          <div className="flex flex-col items-center justify-center my-4 w-full">
-            <label className="mb-2 text-lg">Variables:</label>
-            {variables.map((variable, index) => (
-              <div
-                key={index}
-                className="flex items-center justify-center space-x-2 mb-2 w-4/5"
-              >
-                <input
-                  type="text"
-                  placeholder="Variable Key"
-                  className="p-2 border border-gray-300 rounded w-2/5"
-                  value={variable.key}
-                  onChange={(e) => handleVariableChange(index, 'key', e.target.value)}
-                />
-                <input
-                  type="text"
-                  placeholder="Variable Value"
-                  className="p-2 border border-gray-300 rounded w-2/5"
-                  value={variable.value}
-                  onChange={(e) => handleVariableChange(index, 'value', e.target.value)}
-                />
-                <button
-                  onClick={() => removeVariable(index)}
-                  className="p-2 bg-red-500 text-white rounded hover:bg-red-600"
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              onClick={addVariable}
-              className="p-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Add Variable
-            </button>
-          </div>
-        )}
       </div>
-      <div className="flex flex-col items-center justify-center my-4 w-full">
+      <div className="wrapper flex flex-col items-center justify-center my-4 mx-auto w-full">
         <h2 className="text-xl font-semibold mb-2">Response</h2>
-        <div className="w-4/5">
+        <div className="w-full">
           <div className="mb-2">
             <strong>Status:</strong> {responseStatus !== null ? responseStatus : 'N/A'}
           </div>
           <div>
             <strong>Body:</strong>
-            <pre className="p-2 border border-gray-300 rounded bg-gray-50 whitespace-pre-wrap">
+            <pre className="min-h-20 mt-2 p-2 border border-gray-300 rounded bg-gray-50 whitespace-pre-wrap">
               {responseBody}
             </pre>
           </div>
