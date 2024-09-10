@@ -12,7 +12,7 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
       reportsDirectory: './coverage',
       exclude: [
-        '**/i18n.ts',
+        '**/i18n/**',
         '**/middleware.ts',
         '**/next.config.mjs',
         '**/postcss.config.mjs',

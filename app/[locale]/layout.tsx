@@ -18,10 +18,6 @@ export const metadata: Metadata = {
   description: 'Graph + REST',
 };
 
-export async function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ru' }];
-}
-
 export default async function RootLayout({
   children,
   params: { locale },
