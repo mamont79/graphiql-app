@@ -1,13 +1,48 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { handleRequest } from './actions';
+import { usePathname } from 'next/navigation';
 
 export default function RestApi() {
+  const [pathname] = useState(usePathname());
+
   const [method, setMethod] = useState('GET');
   const [endpoint, setEndpoint] = useState('');
   const [requestBody, setRequestBody] = useState('');
   const [headers, setHeaders] = useState([{ key: '', value: '' }]);
   const [variables, setVariables] = useState([{ key: '', value: '' }]);
   const [activeTab, setActiveTab] = useState('body');
+
+  const updateRoute = useCallback(() => {
+    const base64Endpoint = btoa(endpoint);
+    let route = `/${method}/${base64Endpoint}`;
+
+    if (['POST', 'PUT', 'PATCH'].includes(method) && requestBody) {
+      const base64Body = btoa(JSON.stringify(JSON.parse(requestBody)));
+      route += `/${base64Body}`;
+    }
+
+    const searchParams = new URLSearchParams();
+    headers.forEach((header) => {
+      if (header.key && header.value) {
+        searchParams.append(
+          encodeURIComponent(header.key),
+          encodeURIComponent(header.value)
+        );
+      }
+    });
+
+    const queryString = searchParams.toString();
+    window.history.replaceState(
+      null,
+      '',
+      queryString ? `${route}?${queryString}` : route
+    );
+  }, [method, endpoint, requestBody, headers]);
+
+  useEffect(() => {
+    updateRoute();
+  }, [method, endpoint, headers, variables, updateRoute]);
 
   const handleMethodChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setMethod(e.target.value);
@@ -19,6 +54,14 @@ export default function RestApi() {
 
   const handleRequestBodyChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setRequestBody(e.target.value);
+  };
+
+  const handleRequestBodyBlur = () => {
+    try {
+      JSON.parse(requestBody);
+    } catch (e) {
+      console.error('Invalid JSON format in request body.');
+    }
   };
 
   const handleHeaderChange = (index: number, field: 'key' | 'value', value: string) => {
@@ -55,27 +98,26 @@ export default function RestApi() {
   const [responseBody, setResponseBody] = useState<string>('');
 
   const handleSendRequest = async () => {
-    try {
-      const response = await fetch(endpoint, {
-        method,
-        headers: headers.reduce(
-          (acc, header) => {
-            if (header.key && header.value) {
-              acc[header.key] = header.value;
-            }
-            return acc;
-          },
-          {} as Record<string, string>
-        ),
-        body: ['POST', 'PUT', 'PATCH'].includes(method) ? requestBody : null,
-      });
+    window.history.replaceState(null, '', pathname);
+    const headersObj = headers.reduce(
+      (acc, header) => {
+        if (header.key && header.value) {
+          acc[header.key] = header.value;
+        }
+        return acc;
+      },
+      {} as Record<string, string>
+    );
 
+    const response = await handleRequest(method, endpoint, headersObj, requestBody);
+    updateRoute();
+
+    if (response) {
       setResponseStatus(response.status);
-      const responseText = await response.text();
-      setResponseBody(responseText);
-    } catch (error) {
+      setResponseBody(response.body);
+    } else {
       setResponseStatus(null);
-      setResponseBody('An error occurred while sending the request.');
+      setResponseBody('No response from server.');
     }
   };
   return (
@@ -154,6 +196,7 @@ export default function RestApi() {
                 className="w-full wrapper p-2 rounded w-4/5 h-40"
                 value={requestBody}
                 onChange={handleRequestBodyChange}
+                onBlur={handleRequestBodyBlur}
               />
             </div>
           )}
@@ -241,7 +284,7 @@ export default function RestApi() {
           </div>
           <div>
             <strong>Body:</strong>
-            <pre className="min-h-20 mt-2 p-2 border border-gray-300 rounded bg-gray-50 whitespace-pre-wrap">
+            <pre className="max-h-96 min-h-20 overflow-auto mt-2 p-2 border border-gray-300 rounded bg-gray-50 whitespace-pre-wrap">
               {responseBody}
             </pre>
           </div>
