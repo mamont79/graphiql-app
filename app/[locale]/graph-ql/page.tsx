@@ -1,3 +1,5 @@
+'use client';
+
 import { GraphiQL } from '@/components/graphiQL/GraphiQL';
 import { AppRoutes } from '@/constants/routes.enum';
 import { useTranslations } from 'next-intl';
