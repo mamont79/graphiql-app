@@ -32,5 +32,14 @@
     "loginbtn": "Login to your account",
     "logupbtn": "Register your account",
     "responseError": "Wrong email or password"
+  },
+  "Graph": {
+    "history": "History",
+    "headers": "Header",
+    "query": "Query",
+    "var": "Variables",
+    "res": "Response",
+    "addHead": "Add Header",
+    "exec": "Execute"
   }
 }
